@@ -21,7 +21,7 @@ mongoose
   .catch(err => console.log(err));
 
 // Use Routes
-app.use("/api/", flashcard);
+app.use("/api/flashcard/", flashcard);
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === "production") {

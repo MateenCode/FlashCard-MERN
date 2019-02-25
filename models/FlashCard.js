@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 // Create Schema
-const ItemSchema = new Schema({
+const flashcardScehma = new Schema({
   question: {
     type: String,
     required: true
@@ -11,10 +11,10 @@ const ItemSchema = new Schema({
     type: String,
     required: true
   },
-  Rank: {
+  rank: {
     type: Number,
     default: 0
   }
 });
 
-module.exports = Item = mongoose.model("item", ItemSchema);
+module.exports = Item = mongoose.model("flashcard", flashcardScehma);
