@@ -1,24 +1,9 @@
-# Mongo Express React Node Starter Pack
+# FlashCard
 
-> Create full stack apps with Mongo Express React & Node . Run your client and server with a single command.
+Virtual Flashcard application that lets you store question and answers w/ the ability to hide and show the answer aswell as edit, delete and grade yourself based on that answer you give and automaticly displays based on your grading .
 
-## Quick Start
+# ScreenShot
 
-```bash
-# Install dependencies for server
-npm install
+<img width="1144" alt="download" src="https://user-images.githubusercontent.com/28902787/53385786-81300000-3934-11e9-8f51-b556e8b522e1.png">
 
-# Install dependencies for client
-npm run client-install
-
-# Run the client & server with concurrently
-npm run dev
-
-# Run the Express server only
-npm run server
-
-# Run the React client only
-npm run client
-
-# Server runs on http://localhost:5000 and client on http://localhost:3000
-```
+**[View Live](https://flashcardjs.herokuapp.com/)**
