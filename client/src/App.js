@@ -1,5 +1,10 @@
 import React, { Component } from "react";
+import { Container } from "reactstrap";
 import "./css/App.css";
+
+import Header from "./components/Header";
+import Flist from "./components/FList";
+import Flashcard from "./components/Flashcard";
 
 /* Features
 1. Create new Flashcards
@@ -13,8 +18,23 @@ import "./css/App.css";
    Great Great => Rank = Rank + 2 */
 
 class App extends Component {
+  state = {
+    toggleForm: false
+  };
+
+  toggleForm = () => {
+    this.setState({
+      toggleForm: !this.state.toggleForm
+    });
+  };
+
   render() {
-    return <div className="App">app</div>;
+    return (
+      <Container>
+        <Header toggleForm={this.toggleForm} />
+        <Flist toggle={this.state.toggleForm} />
+      </Container>
+    );
   }
 }
 

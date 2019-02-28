@@ -1,16 +1,6 @@
 const express = require("express");
 const router = express.Router();
 
-/* Features
-2. Edit Flashcard Questions and Answers
-3. Delete Flashcards
-4. Answer Shown When requested.
-5. Ability to self grade your own answer
-6. Sort cards by answer ranking ascending
-   Bad Answer => Rank = 0
-   Good Answer => Rank = Rank + 1
-   Great Great => Rank = Rank + 2 */
-
 // FlashCard Model
 const FlashCard = require("../../models/FlashCard");
 
@@ -19,7 +9,7 @@ const FlashCard = require("../../models/FlashCard");
 // @access  Public
 router.get("/all", (req, res) => {
   FlashCard.find()
-    .sort({ rank: -1 })
+    .sort()
     .then(todo => res.json(todo));
 });
 
@@ -41,7 +31,19 @@ router.post("/add", (req, res) => {
 // @desc    PUT  Flashcards
 // @access  Public
 router.put("/edit/:id", (req, res) => {
-  FlashCard.findById(req.params.id).then(card => {});
+  console.log(req.body);
+  FlashCard.updateOne({ _id: req.params.id }, { $set: req.body })
+    .then(card => res.json({ statue: true, card }))
+    .catch(err => res.json({ statue: false, err }));
+});
+
+// @route   DELETE api/flashcard/delete/:id
+// @desc    DEL  Flashcards
+// @access  Public
+router.delete("/delete/:id", (req, res) => {
+  FlashCard.deleteOne({ _id: req.params.id })
+    .then(card => res.json({ statue: true, card }))
+    .catch(err => res.json({ statue: false, err }));
 });
 
 module.exports = router;
