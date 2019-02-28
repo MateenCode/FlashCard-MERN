@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Container } from "reactstrap";
+import { Provider } from "./context/context";
 import "./css/App.css";
 
 import Header from "./components/Header";
-import Flist from "./components/FList";
-import Flashcard from "./components/Flashcard";
+import CardList from "./components/CardList";
 
 /* Features
 1. Create new Flashcards
@@ -18,22 +18,20 @@ import Flashcard from "./components/Flashcard";
    Great Great => Rank = Rank + 2 */
 
 class App extends Component {
-  state = {
-    toggleForm: false
-  };
-
-  toggleForm = () => {
-    this.setState({
-      toggleForm: !this.state.toggleForm
-    });
-  };
+  // toggle = () => {
+  //   this.setState({
+  //     toggle: !this.state.toggle
+  //   });
+  // };
 
   render() {
     return (
-      <Container>
-        <Header toggleForm={this.toggleForm} />
-        <Flist toggle={this.state.toggleForm} />
-      </Container>
+      <Provider>
+        <Container>
+          <Header />
+          <CardList />
+        </Container>
+      </Provider>
     );
   }
 }
