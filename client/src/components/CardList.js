@@ -19,11 +19,19 @@ export default class CardList extends Component {
   addCard = (dispatch, card) => {
     const question = card.question;
     const answer = card.answer;
-    dispatch({ type: "ADD_CONTACT", payload: card });
+    dispatch({ type: "ADD_CARD", payload: card });
     axios.post("api/flashcard/add", { question, answer });
   };
 
-  handleToggle = () => {};
+  deleteCard = (dispatch, id) => {
+    dispatch({ type: "DELETE_CARD", payload: id });
+    axios.delete(`api/flashcard/delete/${id}`);
+  };
+
+  handleToggle = (dispatch, id) => {
+    dispatch({ type: "TOGGLE_CARD", payload: id });
+    axios.patch(`api/flashcard/toggle/${id}`);
+  };
 
   render() {
     return (
@@ -45,7 +53,19 @@ export default class CardList extends Component {
                 {cards.map(card => {
                   return (
                     <Col key={card._id}>
-                      <CardItem card={card} handleToggle={this.handleToggle} />
+                      <CardItem
+                        card={card}
+                        deleteCard={this.deleteCard.bind(
+                          this,
+                          dispatch,
+                          card._id
+                        )}
+                        handleToggle={this.handleToggle.bind(
+                          this,
+                          dispatch,
+                          card._id
+                        )}
+                      />
                     </Col>
                   );
                 })}

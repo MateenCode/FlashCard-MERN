@@ -5,10 +5,29 @@ const Context = React.createContext();
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "ADD_CONTACT":
+    case "ADD_CARD":
       return {
         ...state,
         cards: [action.payload, ...state.cards]
+      };
+    case "DELETE_CARD":
+      return {
+        ...state,
+        cards: state.cards.filter(card => card._id !== action.payload)
+      };
+    case "TOGGLE_CARD":
+      return {
+        ...state,
+        cards: state.cards.map(card => {
+          if (card._id === action.payload) {
+            return {
+              ...card,
+              toggle: !card.toggle
+            };
+          } else {
+            return card;
+          }
+        })
       };
     default:
       return state;

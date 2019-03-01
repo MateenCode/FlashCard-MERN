@@ -10,8 +10,13 @@ hr {
   background-color: #feca57;
 }
 
-.card_title:hover {
+.card_title {
   cursor: pointer;
   color: #74b9ff;
   font-size: 1.04em;
+}
+
+.trash {
+  cursor: pointer;
+  color: #ff6b6b;
 }
