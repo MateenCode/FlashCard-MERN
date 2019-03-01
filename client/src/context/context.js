@@ -29,6 +29,20 @@ const reducer = (state, action) => {
           }
         })
       };
+    case "RANK_CARD":
+      return {
+        ...state,
+        cards: state.cards.map(card => {
+          if (card._id === action.payload) {
+            return {
+              ...card,
+              rank: action.rank
+            };
+          } else {
+            return card;
+          }
+        })
+      };
     default:
       return state;
   }
@@ -42,7 +56,7 @@ export class Provider extends Component {
 
   async componentDidMount() {
     const res = await axios.get("api/flashcard/all");
-
+    console.log(res.data);
     this.setState({ cards: res.data });
   }
 

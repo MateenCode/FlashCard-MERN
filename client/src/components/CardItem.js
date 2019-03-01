@@ -23,13 +23,28 @@ export default function CardItem(props) {
         {props.card.toggle && (
           <CardText>
             {props.card.answer}
-            <Button color="danger" className="mt-2 mr-4">
+            <Button
+              color="danger"
+              className="mt-2 mr-4"
+              id="0"
+              onClick={props.handleRank}
+            >
               Bad
             </Button>
-            <Button color="info" className="mt-2 mr-4">
+            <Button
+              color="info"
+              className="mt-2 mr-4"
+              id="1"
+              onClick={props.handleRank}
+            >
               Good
             </Button>
-            <Button color="success" className="mt-2 mr-4">
+            <Button
+              color="success"
+              className="mt-2 mr-4"
+              id="2"
+              onClick={props.handleRank}
+            >
               Great
             </Button>
           </CardText>

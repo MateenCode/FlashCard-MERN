@@ -33,6 +33,12 @@ export default class CardList extends Component {
     axios.patch(`api/flashcard/toggle/${id}`);
   };
 
+  handleRank = (dispatch, id, event) => {
+    const rank = event.target.id;
+    dispatch({ type: "RANK_CARD", payload: id, rank });
+    axios.patch(`api/flashcard/rank/${id}`, { rank });
+  };
+
   render() {
     return (
       <Consumer>
@@ -50,25 +56,32 @@ export default class CardList extends Component {
               />
 
               <Row>
-                {cards.map(card => {
-                  return (
-                    <Col key={card._id}>
-                      <CardItem
-                        card={card}
-                        deleteCard={this.deleteCard.bind(
-                          this,
-                          dispatch,
-                          card._id
-                        )}
-                        handleToggle={this.handleToggle.bind(
-                          this,
-                          dispatch,
-                          card._id
-                        )}
-                      />
-                    </Col>
-                  );
-                })}
+                {cards
+                  .sort((a, b) => a.rank - b.rank)
+                  .map(card => {
+                    return (
+                      <Col key={card._id}>
+                        <CardItem
+                          card={card}
+                          deleteCard={this.deleteCard.bind(
+                            this,
+                            dispatch,
+                            card._id
+                          )}
+                          handleToggle={this.handleToggle.bind(
+                            this,
+                            dispatch,
+                            card._id
+                          )}
+                          handleRank={this.handleRank.bind(
+                            this,
+                            dispatch,
+                            card._id
+                          )}
+                        />
+                      </Col>
+                    );
+                  })}
               </Row>
             </React.Fragment>
           );

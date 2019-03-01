@@ -9,7 +9,7 @@ const FlashCard = require("../../models/FlashCard");
 // @access  Public
 router.get("/all", (req, res) => {
   FlashCard.find()
-    .sort()
+    .sort({ rank: 1 })
     .then(todo => res.json(todo));
 });
 
