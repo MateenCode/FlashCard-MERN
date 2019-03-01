@@ -11,6 +11,10 @@ const flashcardScehma = new Schema({
     type: String,
     required: true
   },
+  toggle: {
+    type: Boolean,
+    default: false
+  },
   rank: {
     type: Number,
     default: 0

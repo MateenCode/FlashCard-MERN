@@ -17,6 +17,7 @@ router.get("/all", (req, res) => {
 // @desc    Post new Flashcards
 // @access  Public
 router.post("/add", (req, res) => {
+  console.log(req.body);
   const newFlash = new FlashCard({
     question: req.body.question,
     answer: req.body.answer
@@ -27,14 +28,24 @@ router.post("/add", (req, res) => {
     .catch(err => console.log(err));
 });
 
-// @route   PUT api/flashcard/edit/:id
+// @route   PUT api/flashcard/rank/:id
 // @desc    PUT  Flashcards
 // @access  Public
-router.put("/edit/:id", (req, res) => {
+router.patch("/rank/:id", (req, res) => {
   console.log(req.body);
   FlashCard.updateOne({ _id: req.params.id }, { $set: req.body })
     .then(card => res.json({ statue: true, card }))
     .catch(err => res.json({ statue: false, err }));
+});
+
+// @route   PATCH api/flashcard/rank/:id
+// @desc    toggle change complete to false
+// @access  Public
+router.patch("/toggle/:id", (req, res) => {
+  FlashCard.findById(req.params.id).then(card => {
+    card.toggle = !card.toggle;
+    card.save().then(() => res.json({ success: true }));
+  });
 });
 
 // @route   DELETE api/flashcard/delete/:id

@@ -3,14 +3,19 @@ import { Card, CardText, CardBody, CardTitle } from "reactstrap";
 
 export default function CardItem(props) {
   return (
-    <Card color="warning" className="card text-white m-3">
+    <Card className="card text-white mt-3">
       <CardBody>
-        <CardTitle>Question</CardTitle>
+        <CardTitle className="font-weight-bold">Question</CardTitle>
         <CardText>{props.card.question}</CardText>
       </CardBody>
       <CardBody>
-        <CardTitle>Answer</CardTitle>
-        <CardText>{props.card.answer}</CardText>
+        <CardTitle
+          onClick={props.handleToggle}
+          className="card_title font-weight-bold"
+        >
+          Show Answer
+        </CardTitle>
+        {props.card.toggle && <CardText>{props.card.answer}</CardText>}
       </CardBody>
     </Card>
   );

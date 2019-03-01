@@ -1,11 +1,17 @@
 hr {
   border: none;
   height: 1px;
-  /* Set the hr color */
-  color: #333; /* old IE */
-  background-color: #333; /* Modern Browsers */
+  color: #2d3436; /* old IE */
+  background-color: #2d3436; /* Modern Browsers */
 }
 
 .card {
-  width: 30em;
+  width: 20em;
+  background-color: #feca57;
+}
+
+.card_title:hover {
+  cursor: pointer;
+  color: #74b9ff;
+  font-size: 1.04em;
 }

@@ -22,12 +22,10 @@ export default class Form extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log("firee");
-    // this.props.onSubmit({
-    //   question: this.state.question,
-    //   answer: this.state.answer
-    // });
-
+    this.props.addCard({
+      question: this.state.question,
+      answer: this.state.answer
+    });
     this.setState({
       question: "",
       answer: ""
@@ -38,14 +36,14 @@ export default class Form extends Component {
     return (
       <Modal isOpen={this.props.modal} toggle={this.props.toggleModal}>
         <ModalBody>
-          <Label for="exampleText">Question</Label>
+          <Label>Question</Label>
           <Input
             type="textarea"
             name="question"
             onChange={this.handleChange}
             value={this.state.question}
           />
-          <Label for="exampleText">Answer</Label>
+          <Label>Answer</Label>
           <Input
             type="textarea"
             name="answer"
